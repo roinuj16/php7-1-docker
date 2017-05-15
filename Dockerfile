@@ -7,7 +7,7 @@ RUN echo "\033[1;37m <--- Atualizando e instalando dependencias de configuraçã
 	apt-get update && \
 	apt-get install -y \
 	apt-utils \
-	pkg-config \
+	# pkg-config \
 	openssh-client \
 	vim \
 	git \
@@ -79,12 +79,7 @@ RUN docker-php-ext-install mbstring \
    ldap \
    imap
 
-EXPOSE 80   
+WORKDIR /var/www/app
    
 RUN echo "\033[1;37m <--- Habilitando modo rewrite ---> \033[0m "  
 RUN a2enmod rewrite
-
-
-# ADD 000-default.conf /etc/apache2/sites-enabled/000-default.conf
-
-
