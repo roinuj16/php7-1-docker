@@ -2,7 +2,6 @@ FROM php:7.1-apache
 
 MAINTAINER Edson Junior <junior.si16@gmail.com>
 
-# WORKDIR ["/var/www/app"]
 
 RUN echo "\033[1;37m <--- Atualizando e instalando dependencias de configuração --->  \033[0m " && \
 	apt-get update && \
@@ -79,9 +78,15 @@ RUN docker-php-ext-install mbstring \
    soap \
    ldap \
    imap
+
+EXPOSE 80   
    
-RUN echo "\033[1;37m <--- Habilitando modo rewrite ---> \033[0m "   
+RUN echo "\033[1;37m <--- Habilitando modo rewrite ---> \033[0m "  
 RUN a2enmod rewrite
 
-VOLUME /var/www/app
-COPY 000-default.conf /etc/apache2/sites-available
+ADD . /var/www/app
+
+ADD 000-default.conf /etc/apache2/sites-enabled/000-default.conf
+
+
+WORKDIR "/var/www/app"
