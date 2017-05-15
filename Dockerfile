@@ -84,9 +84,7 @@ EXPOSE 80
 RUN echo "\033[1;37m <--- Habilitando modo rewrite ---> \033[0m "  
 RUN a2enmod rewrite
 
-ADD . /var/www/app
 
-ADD 000-default.conf /etc/apache2/sites-enabled/000-default.conf
+# ADD 000-default.conf /etc/apache2/sites-enabled/000-default.conf
 
 
-WORKDIR "/var/www/app"
